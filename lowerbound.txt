@@ -1,0 +1,51 @@
+- **Lower Bound**
+    
+    You are given n different numbers and an integer k. Write a program that finds lower bound of k in log(n) time complexity. Lower bound of a number k in a sorted list is the index of the first number which is same as k, in case the number is not present, print -1 (here the answer is given considering index to be starting from 0)
+    
+    **NOTE: YOU MUST NOT USE BRUTE FORCE SOLUTION.**
+    
+    **WE KNOW THAT YOU KNOW BRUTE FORCE SOLUTION AND WANT YOU TO TRY THE LOGN SOLUTION.**
+    
+    **USING BRUTE FORCE/LINEAR SEARCH, IN THIS CASE, WOULD LEAD TO DISQUALIFICATION.**
+    
+    ```
+    5 2
+    1 1 2 2 5
+    ```
+    
+    ```java
+    import java.util.Scanner;
+    class Main{
+        static int lower(int[] arr,int k){
+            int low=0;
+            int high=arr.length-1;
+            int ans=-1;
+            while(low<=high){
+                int mid=low+(high-low)/2;
+                if(arr[mid]==k){
+                    ans=mid;
+                    high=mid-1;
+                }
+                else if(arr[mid]>k){
+                    high=mid-1;
+                }
+                else if(arr[mid]<k){
+                    low=mid+1;
+                }
+            }
+            return ans;
+        }
+        public static void main(String[] args){
+            Scanner sc=new Scanner(System.in);
+            int n=sc.nextInt();
+            int k=sc.nextInt();
+            int[] arr=new int[n];
+            for(int x=0;x<n;x++){
+                arr[x]=sc.nextInt();
+            }
+            // int[] arr={1,2,3,4,4,5,5,7,5,1};
+            // int k=5;
+            System.out.println(lower(arr,k));
+        }
+    }
+    ```
