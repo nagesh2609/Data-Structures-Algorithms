@@ -1,0 +1,44 @@
+- **Shinchan and Kazama**
+Shinchan & Kazama are classmates at Futaba Kindergarten. I- chan likes shinchan, more than Kazama.
+ Kazama wants to prove to I-chan that he is smarter than Shinchan, so he tries to boast his knowledge about numbers in front of her. 
+He takes an sorted array of N integers, and asks I-chan for a number K. If the number exists in the array, he will return the index
+ where the number is present, else he returns the index where it would be if it were inserted in order. This task seems to be very
+ difficult for Kazama, so he asks you for help. Help him, or else he will lose his friendship with I-chan.
+
+4
+1 3 5 6
+5
+
+import java.util.Scanner;
+class Main{
+    static void demo(int[] arr,int n, int k){
+        int start=0;
+        int end=n-1;
+        int ans=0;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            // System.out.println(mid);
+            // break;
+            if(arr[mid]==k){
+                System.out.println(mid);
+                break;
+            }
+            else if(arr[mid]>k){
+                end=mid-1;
+            }
+            else if(arr[mid]<k){
+                start=mid+1;
+            }
+        }
+    }
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr = new int[n];
+        for(int x=0;x<n;x++){
+            arr[x]=sc.nextInt();
+        }
+        int k=sc.nextInt();
+        demo(arr,n,k);
+    }
+}
